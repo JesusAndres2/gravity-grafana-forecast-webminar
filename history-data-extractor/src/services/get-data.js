@@ -1,6 +1,12 @@
 const RestServices = require("../rest-services");
 const mapData = require("../mappers");
 
+/**
+ * Get data from a given site of weather and solar forecast api
+ * 
+ * @param {*} site { latitude: "", length }
+ * @returns both api data merged and mapped
+ */
 module.exports = site => new Promise((resolve, reject) => {
     console.info(`Getting forecast historical day data of site: ${JSON.stringify(site)}`);
     const promises = [
