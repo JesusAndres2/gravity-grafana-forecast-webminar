@@ -26,5 +26,6 @@ module.exports = {
       length: 36.506111,
       latitude: -4.883889
     }
-  }
+  },
+  loggerLevel: "INFO"
 };

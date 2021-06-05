@@ -1,4 +1,5 @@
 const RestServices = require("../rest-services");
+const vars = require("../config/vars");
 const mapData = require("../mappers");
 
 /**
@@ -16,7 +17,10 @@ module.exports = site => new Promise((resolve, reject) => {
     Promise.all(promises).then(([solarData, weatherData]) => {
       console.info("Retrieved forecast data. Starting to map it");
       const result = mapData(weatherData, solarData, site);
-      console.info(`Mapping finished successfully. Result: ${JSON.stringify(result)}`);
+      if (vars.loggerLevel === "DEBUG") {
+        console.debug(`Mapping finished successfully. Result: ${JSON.stringify(result)}`);
+      }
+      console.info(`Mapping finished successfully from site ${JSON.stringify(site)}`);
       resolve(result);
     })
     .catch(error => {

@@ -22,7 +22,9 @@ const getWeatherData = (length, latitude) =>
                 {
                     headers: { Authorization: vars.apiKey }
                 }).then(response => {
-                    console.debug(`Retrieved response from solar data: ${JSON.stringify(response.data)}`);
+                    if (vars.loggerLevel === "DEBUG") {
+                        console.debug(`Retrieved response from weather data: ${JSON.stringify(response.data)}`);
+                    }
                     console.info(`retrieved ${response.data.hours.length} data points`);
                     resolve(response.data);
                 })
