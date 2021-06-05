@@ -2,7 +2,10 @@ const axios = require("axios");
 const vars = require("../config/vars");
 
 /**
- * Get solar Info of forecasting api
+ * Get solar Info of forecasting api.
+ * If no time start/end parameter specified, get historical data of day from 00:00 to last
+ * sample retrieved.
+ * https://docs.stormglass.io/#/solar
  * @param {*} length
  * @param {*} latitude
  * @returns api response data
