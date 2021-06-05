@@ -1,7 +1,7 @@
-const solar = require("./solar");
-const weather = require("./wheater");
+const getSolarData = require("./solar");
+const getWeatherData = require("./wheater");
 
 module.exports = {
-  solar,
-  weather
+  getSolarData,
+  getWeatherData
 };
