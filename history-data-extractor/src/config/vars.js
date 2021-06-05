@@ -16,11 +16,11 @@ module.exports = {
   sites: {
     puntaHumbria: {
       length: 37.178056,
-      latitud: -6.971944
+      latitude: -6.971944
     },
     marbella: {
       length: 36.506111,
-      latitud: -4.883889
+      latitude: -4.883889
     }
   }
 };
