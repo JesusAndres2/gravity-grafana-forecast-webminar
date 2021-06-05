@@ -10,6 +10,9 @@ module.exports = {
     weather:
       "airTemperature,cloudCover,currentSpeed,gust,humidity,swellHeight,swellPeriod,visibility,waterTemperature,waveHeight,wavePeriod,windSpeed"
   },
+  sources: {
+    stormGlass: "sg"
+  },
   sites: {
     puntaHumbria: {
       length: 37.178056,

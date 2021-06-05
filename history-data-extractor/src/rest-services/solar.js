@@ -15,7 +15,7 @@ const getSolarData = (length, latitude) =>
         );
         axios
             .get(
-                `${vars.baseUrl}${vars.paths.solar}point?lat=${latitude}&lng=${length}&params=${vars.params.solar}`,
+                `${vars.baseUrl}${vars.paths.solar}point?source=${vars.sources.stormGlass}&lat=${latitude}&lng=${length}&params=${vars.params.solar}`,
                 {
                     headers: { Authorization: vars.apiKey }
                 }).then(response => {
