@@ -22,7 +22,8 @@ const getSolarData = (length, latitude) =>
                 {
                     headers: { Authorization: vars.apiKey }
                 }).then(response => {
-                    console.info(`Retrieved response from solar data: ${JSON.stringify(response.data)}`);
+                    console.debug(`Retrieved response from solar data: ${JSON.stringify(response.data)}`);
+                    console.info(`retrieved ${response.data.hours.length} data points`);
                     resolve(response.data);
                 })
             .catch(error => {
