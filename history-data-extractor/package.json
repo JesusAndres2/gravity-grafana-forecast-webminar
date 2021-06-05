@@ -1,0 +1,9 @@
+{
+    "name": "history-data-extractor",
+    "version": "1.0.0",
+    "private": false,
+    "dependencies": {
+        "axios": "^0.21.1",
+        "ramda": "^0.27.1"
+    }
+}
