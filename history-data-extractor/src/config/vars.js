@@ -10,6 +10,10 @@ module.exports = {
     weather:
       "airTemperature,cloudCover,currentSpeed,gust,humidity,swellHeight,swellPeriod,visibility,waterTemperature,waveHeight,wavePeriod,windSpeed"
   },
+  destination: {
+    baseUrl: "http://localhost:8081",
+    historicalPath: "/historical"
+  },
   sources: {
     stormGlass: "sg"
   },
