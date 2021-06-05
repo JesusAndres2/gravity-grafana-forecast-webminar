@@ -15,7 +15,7 @@ const getWeatherData = (length, latitude) =>
         );
         axios
             .get(
-                `${vars.baseUrl}${vars.paths.solar}point?lat=${latitude}&lng=${length}&params=${vars.params.weather}`,
+                `${vars.baseUrl}${vars.paths.weather}point?lat=${latitude}&lng=${length}&params=${vars.params.weather}`,
                 {
                     headers: { Authorization: vars.apiKey }
                 }).then(response => {
