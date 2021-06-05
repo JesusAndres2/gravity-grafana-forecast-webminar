@@ -19,8 +19,8 @@ const getWeatherData = (length, latitude) =>
                 {
                     headers: { Authorization: vars.apiKey }
                 }).then(response => {
-                    console.info(`Retrieved response from weather data: ${JSON.stringify(response.json())}`);
-                    resolve(response.json());
+                    console.info(`Retrieved response from weather data: ${JSON.stringify(response.data)}`);
+                    resolve(response.data);
                 })
             .catch(error => {
                 console.error(
