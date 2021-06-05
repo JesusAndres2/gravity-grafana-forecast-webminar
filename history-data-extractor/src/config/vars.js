@@ -6,7 +6,8 @@ module.exports = {
     weather: "weather/"
   },
   params: {
-    solar: "",
-    weather: ""
+    solar: "uvIndex",
+    weather:
+      "airTemperature,cloudCover,currentSpeed,gust,humidity,swellHeight,swellPeriod,visibility,waterTemperature,waveHeight,wavePeriod,windSpeed"
   }
 };
