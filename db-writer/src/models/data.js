@@ -21,10 +21,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      dimensionId: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-      },
       updatedAt: {
         type: DataTypes.DATE,
         allowNull: true
