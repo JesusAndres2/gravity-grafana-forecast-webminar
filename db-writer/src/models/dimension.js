@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
+      metricId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
       updatedAt: {
         type: DataTypes.DATE,
         allowNull: true
