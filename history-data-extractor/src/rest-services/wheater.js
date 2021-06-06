@@ -1,5 +1,6 @@
 const axios = require("axios");
 const vars = require("../config/vars");
+const R = require("ramda");
 
 /**
  * Get Weather Info of forecasting api
@@ -29,9 +30,15 @@ const getWeatherData = (length, latitude) =>
                     resolve(response.data);
                 })
             .catch(error => {
-                console.error(
-                    `Error getting weather info about ${vars.params.weather} in latitude ${latitude} and length ${length}. Stack trace: ${error}`
-                );
+                if (error && R.hasPath(["response", "status"]) && R.hasPath(["response", "data", "errors"])) {
+                    console.error(
+                        `Error getting solar info about ${vars.params.solar} in latitude ${latitude} and length ${length}. Response status: ${error.response.status} and reason: ${JSON.stringify(error.response.data.errors)}`
+                    );
+                } else {
+                    console.error(
+                        `Error getting solar info about ${vars.params.solar} in latitude ${latitude} and length ${length}. Stack trace: ${error}`
+                    ); 
+                }
                 reject(error);
             });
     });
