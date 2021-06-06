@@ -1,0 +1,19 @@
+{
+    "name": "db-writer",
+    "version": "1.0.0",
+    "private": false,
+    "scripts": {
+        "start:local": "cross-env NODE_ENV=local serverless offline start"
+    },
+    "dependencies": {
+        "ramda": "^0.27.1",
+        "sequelize": "^5.21.13"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.0",
+        "serverless": "^1.61.3",
+        "serverless-dotenv-plugin": "^2.4.2",
+        "serverless-offline": "^5.12.1",
+        "serverless-plugin-include-dependencies": "^4.0.1"
+    }
+}
