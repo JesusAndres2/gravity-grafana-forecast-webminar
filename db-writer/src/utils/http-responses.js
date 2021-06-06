@@ -25,8 +25,14 @@ const OK_RESPONSE = {
     body: ""
 };
 
+const CREATED_RESPONSE = {
+    statusCode: 201,
+    body: ""
+};
+
 module.exports = {
     GENERIC_ERROR_RESPONSE,
     BAD_REQUEST_ERROR_RESPONSE,
-    OK_RESPONSE
+    OK_RESPONSE,
+    CREATED_RESPONSE
 };
