@@ -1,3 +1,16 @@
+const db = require("./db/postgres");
+let initialized = false;
+/**
+ * Bootstraping
+ * Functions to be loaded before excecute the logic
+ * @returns {Promise<void>}
+ */
+const bootstrapDb = async () => {
+    console.info("Starting bootstrapping with database");
+    await db.init();
+    console.info("Started bootstrapping with database");
+};
+
 /**
  * Main handler
  * @param event
@@ -5,5 +18,12 @@
  * @returns {Promise<any>}
  */
 module.exports.handler = async event => {
-    console.info("Hello World!");
+    // body,headers,,multiValueHeaders,multiValueQueryStringParameters,path,pathParameters,queryStringParameters,requestContext,resource,stageVariables,isOffline
+    console.info(`Incoming event. Method ${event.httpMethod} and path: ${event.path}`);
+    if (!initialized) {
+        await bootstrapDb();
+        initialized = true;
+    }
+    return {};
+    // Mirar simulation tool
 };
