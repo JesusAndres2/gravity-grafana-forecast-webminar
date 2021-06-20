@@ -22,10 +22,10 @@ module.exports = {
     });
 
     db = {
-      Site: require('./models/site')(sequelize, Sequelize),
-      Data: require('./models/data')(sequelize, Sequelize),
-      Metric: require('./models/metric')(sequelize, Sequelize),
-      Dimension: require('./models/dimension')(sequelize, Sequelize)
+      Site: require('../models/site')(sequelize, Sequelize),
+      Data: require('../models/data')(sequelize, Sequelize),
+      Metric: require('../models/metric')(sequelize, Sequelize),
+      Dimension: require('../models/dimension')(sequelize, Sequelize)
     };
 
     console.info("Executing pending migrations");
