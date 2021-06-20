@@ -7,7 +7,7 @@ let db = {};
 
 module.exports = {
   init: async () => {
-    console.info("Starting up process of postgres database");  
+    console.info("Starting up process of postgres database");
     // get connections values
     const { postgres: { dbname, username, password, host, engine, port } } = vars;
     sequelize = new Sequelize(dbname, username, password, {
@@ -46,6 +46,9 @@ module.exports = {
 
     // Any dimension, belongs to any metric
     db["Metric"].hasOne(db["Dimension"], { foreignKey: { name: "metricId", unique: false, constraints: false } });
-    console.info("Finished start up process of postgres database"); 
+    console.info("Finished start up process of postgres database");
+  },
+  getTable(tableName) {
+    return db[tableName];
   }
 };
