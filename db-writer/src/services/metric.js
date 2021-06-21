@@ -2,27 +2,25 @@ const DataServices = require("../data-services/");
 
 /**
   check if metrics exists. If not, creates it
-  @param data
+  @param metricMeta
     array with metrics. Shape:
-    [{
-      "metric": "xxxx",
-      "value": "xx" || "xx" || ["xx", "xx"],
-      "dimensions": undefined || ["xx"] || [["xx", "xx"]]
-    },...]
+    [metric1, metric2, metric3, ...]
+  @return Object with Key = metric name and value with metricId  
 */
-const createIfNotExists = async data => {
+const createIfNotExists = async metricMeta => {
   try {
     // Search all Metrics.
-    const metrics = data.map(item => item.metric);
-    const uniqueMetrics = metrics.filter((item, position) => metrics.indexOf(item) === position);
-    const promises = uniqueMetrics.map(async metric => {
-      const metricSearch = await DataServices.metric.findByName(metric);
+    const metricsIds = {};
+    const promises = metricMeta.map(async metric => {
+      let metricSearch = await DataServices.metric.findByName(metric);
       if (!metricSearch) {
         console.info(`Metric ${metric} does not exists. Creating it`);
-        DataServices.metric.create(metric);
+        metricSearch = await DataServices.metric.create(metric);
       }
+      metricsIds[metric] = metricSearch.dataValues.id;
     });
     await Promise.all(promises);
+    return metricsIds;
   } catch (e) {
     console.error(`Error creating metric if not exists. Stack trace: ${e}`);
     throw new Error(`Error creating metric if not exists. Stack trace: ${e}`);

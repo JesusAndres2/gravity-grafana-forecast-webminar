@@ -30,7 +30,7 @@ module.exports.handler = async event => {
         // TODO: TO http response
         return response;
     } catch (error) {
-        console.error(`Something was wrong. Stack trace: ${e}`);
+        console.error(`Something was wrong. Stack trace: ${error}`);
         // TODO: Return 500
     }
 };

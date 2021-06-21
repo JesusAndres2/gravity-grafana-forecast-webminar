@@ -5,21 +5,23 @@ const DataService = require("../data-services");
   @param data
     array with metrics. Shape:
     [{
-      "metric": "xxxx",
-      "value": "xx" || "xx" || ["xx", "xx"],
-      "date": ""
-      "dimensions": undefined || ["xx"] || [["xx", "xx"]]
+      "metric1": "xxxx",
+      "metric2": "xxxx",
+      "time" ""
     },...]
   @param siteId  
 */
-const insertDataInBatch = async (data, siteId) => {
+const insertDataInBatch = async (data, siteId, metricsIds) => {
     try {
         const asyncPromises = data.map(async item => {
-            const { metric, value, date } = item;
-            const metric = await DataService.metric.findByName(metric);
-            // Here, assume metricCreate if exists executed
-            const metricId = metric.dataValues.id;
-            await DataService.data.create(vlaye, date, metricId, siteId);
+            const { time } = item;
+            delete item.time;
+            const promises = [];
+            Object.keys(item).forEach(key => {
+              const metricId = metricsIds[key];
+              promises.push(DataService.data.create(item[key], time, metricId, siteId));
+            });
+            await Promise.all(promises);                
         });
         await Promise.all(asyncPromises);
     } catch (error) {
