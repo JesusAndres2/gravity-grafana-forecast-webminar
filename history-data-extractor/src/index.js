@@ -9,7 +9,7 @@ const vars = require("./config/vars");
 const main = async () => {
   console.info("Starting historical data recollection");
   const promises = Object.keys(vars.sites).map(async siteKey => {
-    const data = await DataService.getData(vars.sites[siteKey]);
+    const data = await DataService.getData(vars.sites[siteKey], siteKey);
     await DataService.sendData(data);
   });
   await Promise.all(promises);

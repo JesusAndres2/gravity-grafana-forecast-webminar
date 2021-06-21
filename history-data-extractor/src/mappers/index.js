@@ -27,9 +27,10 @@ const toKeyValue = data => {
  * @param {*} weatherData
  * @param {*} solarData
  * @param {*} site
+ * @param {*} name site name
  * @returns
  */
-const mapData = (weatherData, solarData, site) => {
+const mapData = (weatherData, solarData, site, name) => {
   const wheaterKeyvalue = toKeyValue(weatherData);
   const solarKeyValue = toKeyValue(solarData);
   // same site data were provided in distinct apis. Now, merge both data by sample time
@@ -37,7 +38,10 @@ const mapData = (weatherData, solarData, site) => {
   const dataMerged = R.map(
     solarSample => R.merge(solarSample, wheaterGroupBy[solarSample.time][0]), solarKeyValue);
   return {
-    site,
+    site: {
+      ...site,
+      name
+    },
     data: dataMerged
   };
 };
