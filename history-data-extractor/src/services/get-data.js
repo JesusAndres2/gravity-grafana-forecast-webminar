@@ -6,17 +6,18 @@ const mapData = require("../mappers");
  * Get data from a given site of weather and solar forecast api
  * 
  * @param {*} site { latitude: "", length }
+ * @param {*} name: siteName
  * @returns both api data merged and mapped
  */
-module.exports = site => new Promise((resolve, reject) => {
-    console.info(`Getting forecast historical day data of site: ${JSON.stringify(site)}`);
+module.exports = (site, name) => new Promise((resolve, reject) => {
+    console.info(`Getting forecast historical day data of site: ${JSON.stringify(site)} (${name})`);
     const promises = [
       RestServices.getSolarData(site.length, site.latitude),
       RestServices.getWeatherData(site.length, site.latitude)
     ];
     Promise.all(promises).then(([solarData, weatherData]) => {
       console.info("Retrieved forecast data. Starting to map it");
-      const result = mapData(weatherData, solarData, site);
+      const result = mapData(weatherData, solarData, site, name);
       if (vars.loggerLevel === "DEBUG") {
         console.debug(`Mapping finished successfully. Result: ${JSON.stringify(result)}`);
       }

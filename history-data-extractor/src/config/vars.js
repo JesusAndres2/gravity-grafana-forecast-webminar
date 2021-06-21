@@ -11,7 +11,7 @@ module.exports = {
       "airTemperature,cloudCover,currentSpeed,gust,humidity,swellHeight,swellPeriod,visibility,waterTemperature,waveHeight,wavePeriod,windSpeed"
   },
   destination: {
-    baseUrl: "http://localhost:8081",
+    baseUrl: "http://localhost:3000",
     historicalPath: "/historical"
   },
   sources: {

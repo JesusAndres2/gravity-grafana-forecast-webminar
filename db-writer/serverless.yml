@@ -1,0 +1,16 @@
+service: db-writer
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+provider:
+  name: aws
+  runtime: nodejs14.x
+custom:
+  serverless-offline:
+    httpPort: 3000
+functions:
+  fn:
+    handler: src/index.handler
+    events:
+      - http: POST historical
+      - http: POST real-time
