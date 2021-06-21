@@ -6,5 +6,8 @@ module.exports = {
         host: "localhost",
         engine: "postgres",
         port: 5432
+    },
+    incominEvents: {
+        historical: "/historical"
     }
 };

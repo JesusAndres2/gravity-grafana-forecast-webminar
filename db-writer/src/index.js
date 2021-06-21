@@ -1,4 +1,5 @@
 const db = require("./db/postgres");
+const Router = require("./routes");
 let initialized = false;
 /**
  * Bootstraping
@@ -24,6 +25,8 @@ module.exports.handler = async event => {
         await bootstrapDb();
         initialized = true;
     }
-    return {};
-    // Mirar simulation tool
+    const response = await Router(event);
+
+    // TODO: TO http response
+    return response;
 };

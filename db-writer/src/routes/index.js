@@ -8,22 +8,22 @@ const realTime = require("./real-time");
  * @param {*} event 
  * @returns 
  *  services responses
- *  null if no route found
  */
 module.exports = event => {
   const { resource, httpMethod } = event;
   console.info(`Looking for a router handler for event: ${httpMethod} ${resource}`);  
-  const allRoutes = [...historical, ...realTime];
+  // TODO: const allRoutes = [...historical, ...realTime];
+  const allRoutes = [...historical];
 
   const route = R.find(
-    ({ path, method }) => resource === path && httpMethod === method
+    ({ route, action }) => resource === route && httpMethod === action
   )(allRoutes);
 
   if (!route) {
     console.warn("No route match");
-    return null;
+    throw new Error("No route match")
   }
   console.info(`Route handler found for event : ${httpMethod} ${resource}. Executing it`)
 
-  return route.action(event, trackingid, isAdmin);
+  return route.handler(event);
 };
