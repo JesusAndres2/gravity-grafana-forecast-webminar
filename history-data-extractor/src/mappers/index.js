@@ -27,18 +27,24 @@ const toKeyValue = data => {
  * @param {*} weatherData
  * @param {*} solarData
  * @param {*} site
+ * @param {*} name site name
  * @returns
  */
-const mapData = (weatherData, solarData, site) => {
+const mapData = (weatherData, solarData, site, name) => {
   const wheaterKeyvalue = toKeyValue(weatherData);
   const solarKeyValue = toKeyValue(solarData);
   // same site data were provided in distinct apis. Now, merge both data by sample time
   const wheaterGroupBy = R.groupBy(R.prop("time"), wheaterKeyvalue);
   const dataMerged = R.map(
     solarSample => R.merge(solarSample, wheaterGroupBy[solarSample.time][0]), solarKeyValue);
+  // add a list of metrics in metadaData. By this way, is more easy to manage metrics in writing  
   return {
-    site,
-    data: dataMerged
+    site: {
+      ...site,
+      name
+    },
+    data: dataMerged,
+    mertricMeta: [vars.params.solar, ...vars.params.weather.split(",")]
   };
 };
 
