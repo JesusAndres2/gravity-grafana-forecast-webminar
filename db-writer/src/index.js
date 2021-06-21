@@ -19,14 +19,18 @@ const bootstrapDb = async () => {
  * @returns {Promise<any>}
  */
 module.exports.handler = async event => {
-    // body,headers,,multiValueHeaders,multiValueQueryStringParameters,path,pathParameters,queryStringParameters,requestContext,resource,stageVariables,isOffline
-    console.info(`Incoming event. Method ${event.httpMethod} and path: ${event.path}`);
-    if (!initialized) {
-        await bootstrapDb();
-        initialized = true;
+    try {
+        // body,headers,,multiValueHeaders,multiValueQueryStringParameters,path,pathParameters,queryStringParameters,requestContext,resource,stageVariables,isOffline
+        console.info(`Incoming event. Method ${event.httpMethod} and path: ${event.path}`);
+        if (!initialized) {
+            await bootstrapDb();
+            initialized = true;
+        }
+        const response = await Router(event);
+        // TODO: TO http response
+        return response;
+    } catch (error) {
+        console.error(`Something was wrong. Stack trace: ${e}`);
+        // TODO: Return 500
     }
-    const response = await Router(event);
-
-    // TODO: TO http response
-    return response;
 };
