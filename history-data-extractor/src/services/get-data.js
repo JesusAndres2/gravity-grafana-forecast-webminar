@@ -6,7 +6,7 @@ const mapData = require("../mappers");
  * Get data from a given site of weather and solar forecast api
  * 
  * @param {*} site { latitude: "", length }
- * @param name: siteName
+ * @param {*} name: siteName
  * @returns both api data merged and mapped
  */
 module.exports = (site, name) => new Promise((resolve, reject) => {

@@ -5,6 +5,14 @@ const vars = require("./config/vars");
  * For every site stored in project configuration, execute Get data from
  * storm glass Api and send te correlated information to DB writer module
  * exposed by an http destination endpoint.
+ * @return
+ * {
+ *    site: {
+ *       length, latitude, name
+ *    },
+ *    data: [{ time, metric1: value1, metric2, value2, ....}],
+ *    metricMeta: ["str1", "str2", ...]
+ * }
  */
 const main = async () => {
   console.info("Starting historical data recollection");

@@ -37,12 +37,14 @@ const mapData = (weatherData, solarData, site, name) => {
   const wheaterGroupBy = R.groupBy(R.prop("time"), wheaterKeyvalue);
   const dataMerged = R.map(
     solarSample => R.merge(solarSample, wheaterGroupBy[solarSample.time][0]), solarKeyValue);
+  // add a list of metrics in metadaData. By this way, is more easy to manage metrics in writing  
   return {
     site: {
       ...site,
       name
     },
-    data: dataMerged
+    data: dataMerged,
+    mertricMeta: [vars.params.solar, ...vars.params.weather.split(",")]
   };
 };
 
