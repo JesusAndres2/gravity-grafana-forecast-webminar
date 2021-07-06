@@ -5,7 +5,7 @@ module.exports = {
         password: "mysecretpassword",
         host: "localhost",
         engine: "postgres",
-        port: 5432
+        port: 5436
     },
     incominEvents: {
         historical: "/historical"
